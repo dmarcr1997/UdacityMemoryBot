@@ -48,7 +48,7 @@ ChatBot::~ChatBot()
 //Copy Assignment Operator
 ChatBot& ChatBot::operator=(const ChatBot& bot){
   std::cout << "ChatBot Copy Assignment Operator" << std::endl;
-  std::cout << "ASSIGNING content of instance " << &bot << " to instance " << this << std::endl;
+  //std::cout << "ASSIGNING content of instance " << &bot << " to instance " << this << std::endl;
   if(this == &bot)
     return *this;
   
@@ -67,12 +67,12 @@ ChatBot& ChatBot::operator=(ChatBot&& bot){
   	
   	if(this == &bot)
     	return *this;
-  	std::cout << "MOVING content of instance " << &bot << " to instance " << this << std::endl;
+  	//std::cout << "MOVING content of instance " << &bot << " to instance " << this << std::endl;
     this->_image = bot._image;
     this->_currentNode = bot._currentNode;
     this->_rootNode = bot._rootNode;
     this->_chatLogic = bot._chatLogic;
-  
+  	this->_chatLogic->SetChatbotHandle(this);
   	bot._image = NULL;
   	bot._currentNode = nullptr;
   	bot._rootNode = nullptr;
@@ -84,7 +84,7 @@ ChatBot& ChatBot::operator=(ChatBot&& bot){
 //Move Constructor
 ChatBot::ChatBot(ChatBot &&bot){
   	std::cout << "ChatBot Move Constructor" << std::endl;
-  	std::cout << "MOVING content of instance " << &bot << " to instance " << this << std::endl;
+  	//std::cout << "MOVING content of instance " << &bot << " to instance " << this << std::endl;
   	this->_image = new wxBitmap(*bot._image);
   	this->_currentNode = bot._currentNode;
   	this->_rootNode = bot._rootNode;
@@ -99,7 +99,7 @@ ChatBot::ChatBot(ChatBot &&bot){
 //Copy Constructor
 ChatBot::ChatBot(const ChatBot &bot){
   std::cout << "ChatBot Copy Constructor" << std::endl;
-  std::cout << "COPYING content of instance " << &bot << " to instance " << this << std::endl;
+  //std::cout << "COPYING content of instance " << &bot << " to instance " << this << std::endl;
   this->_image = new wxBitmap(*bot._image);
   
   this->_currentNode = new GraphNode(bot._currentNode->GetID());
